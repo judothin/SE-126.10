@@ -12,35 +12,33 @@
 #many people must be excluded in order to meet the fire regulations. The user should be allowed
 #to enter and check as many rooms as they would like without exiting the program.
 
-#--------------------------------------Main Code--------------------------------------------------------#
+#---------------------Main Code--------------------#
 
-def calculate_difference(attendees, capacity):
-    difference = attendees - capacity
-    return difference
+def difference(people, max_cap):
+  if people <= max_cap:
+      extra_people = max_cap - people
+      print(f"It is legal to hold the meeting and there will be {extra_people} additional people that can legally attend.")
+  else:
+      excess_people = people - max_cap
+      print(f"The meeting cannot be held as planned due to the standing fire regulations and {excess_people} people must be excluded in order to meet the fire regulations.")
 
-def decision ():
-    response = input("Would you like to Enter the attendance for another meeting? (y/n) ").lower()
-    return response
-response = decision()
-mname = input("What is the name of the meeting? ")
-decision (response)
-attendees = int(input("How many people are attending the meeting? "))
-capacity = int(input("What is the capacity of the room? "))
 
-if attendees <= capacity:
-    print("It is legal to hold the meeting. You may have", calculate_difference(capacity, attendees), "more people attend.")
+def decision(response):
+  while True:
+    response = input("Do you want to check another meeting? (y/n) ")
+    if response.lower() == "n":
+        print("Thank you for using the program. Goodbye!")
+        return False
+    elif response.lower() == "y":
+        return True
+    else:
+        print("Invalid input. Please enter 'y' or 'n'.")
 
-else:
-    print("The meeting cannot be held as planned due to fire regulations. You must exclude", calculate_difference(attendees, capacity), "people to meet the fire regulations.")
-
-response = decision()
-
-if response == "y":
-    mname = input("What is the name of the meeting? ")
-    attendees = int(input("How many people are attending the meeting? "))
-    capacity = int(input("What is the capacity of the room? "))
-
-else:
-    print("Thank you for using the meeting room calculator. Have a nice day!")
-    
-    
+#calling functions
+response = "y"
+while True:
+  max_cap = int(input("Enter the maximum room capacity: "))
+  people = int(input("Enter the number of people attending the meeting: "))
+  difference(people, max_cap)
+  if not decision(response):
+      break
