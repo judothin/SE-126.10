@@ -61,15 +61,6 @@ with open ('W2\w2d2 hw\lab2b.csv') as csvfile:
         
         total_records += 1
 
-        
-
-        
-
-    
-
-
-
-        
 
         #final printed msg
         print("{:<10} {:<10} {:<10} {:<10} {:<10} {:<10} {:<10} {:<10} {:<10}".format(comp_type, manufacturer, processor, ram, hdd_1, num_hdd, hdd_2, os, year))
