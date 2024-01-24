@@ -3,7 +3,26 @@
 #prompt: Your CIO (Chief Information Officer) has asked you to determine how much it would cost the company to replace all machines that are from 2016 and earlier. He plans on spending not more than $2,000 dollars for desktops and $1,500 for laptops.  Store the data from the file lab3a.csv into lists.  Then process the lists to reprint all of the file information (exactly as you did in Lab 2) and also produce an end report that lists the number of desktops that will be replaced, the cost to replace the desktops, the number of laptops that will be replaced, and the cost to replace the laptops.
 
 import csv
-total_records = 0
+
+#-------------variable dictionary----------------#
+total_records = 0 #total number of records processed
+drcost = 0 #cost to replace  all desktops
+lrcost = 0 #cost to replace all laptops
+drcount = 0 #number of desktops to be replaced
+lrcount = 0 #number of laptops to be replaced
+ryear = 16  #replace computers older than this
+cpdesktop = 2000  #cost to replace a desktop
+cplaptop = 1500  #cost to replace a laptop
+#comp_type = type of computer
+#manufacturer = manufacturer of computer
+#processor = processor of computer
+#ram = amount of ram in computer
+#hdd_1 = size of first hard drive
+#num_hdd = number of hard drives
+#hdd_2 = size of second hard drive
+#os = operating system
+#year = year computer was built
+#------------------------------------------------#
 
 #idk if this is needed but i added it when i was trying to figure out why it wasnt working
 comp_type = []
@@ -15,26 +34,28 @@ num_hdd = []
 hdd_2 = []
 os = []
 year = []
-
-processor_list = []
-year_list = []
-os_list = []
 comp_type_list = []
 manufacturer_list = []
+processor_list = []
 ram_list = []
 hdd_1_list = []
 num_hdd_list = []
 hdd_2_list = []
+os_list = []
+year_list = []
+
 
 import csv
 
-with open ('W2/w2d2 lab2/lab2b.csv') as csvfile:
+with open ('W3\lab3a.csv') as csvfile:
     file = csv.reader(csvfile)
 
-    #labels (yes i looked up how to line them up like this)
+    #labels
     print("{:<10} {:<10} {:<10} {:<10} {:<10} {:<10} {:<10} {:<10} {:<10}".format("Type", "Man", "Proc", "RAM", "HDD1", "HDD_NUM", "HDD2", "OS", "Year"))
 
+    #assigning recs to variables
     for rec in file:
+
         if rec[0] == "D":
             comp_type = "Desktop"
         elif rec[0] == "L":
@@ -58,17 +79,14 @@ with open ('W2/w2d2 lab2/lab2b.csv') as csvfile:
         os = rec[6]
         year = rec[7]
 
-        #figuring this out was annoying ngl
         if num_hdd == "1":
             hdd_2 = "N/A"
         elif num_hdd == "2":
             hdd_2 = rec[6]
             os = rec[7]
             year = rec[8]
-
-        total_records += 1
-
-        os_list.append(os)
+            
+        #sort file data into lists
         comp_type_list.append(comp_type)
         manufacturer_list.append(manufacturer)
         processor_list.append(processor)
@@ -76,22 +94,34 @@ with open ('W2/w2d2 lab2/lab2b.csv') as csvfile:
         hdd_1_list.append(hdd_1)
         num_hdd_list.append(num_hdd)
         hdd_2_list.append(hdd_2)
+        os_list.append(os)
         year_list.append(year)
 
-        #final printed msg
+        for i in range(len(processor_list)):
+            comp_type = comp_type_list[i]
+            manufacturer = manufacturer_list[i]
+            processor = processor_list[i]
+            ram = ram_list[i]
+            hdd_1 = hdd_1_list[i]
+            num_hdd = num_hdd_list[i]
+            hdd_2 = hdd_2_list[i]
+            os = os_list[i]
+            year = year_list[i]
+
+        if int(year) <= ryear:
+            if comp_type == "Desktop":
+                drcount += 1
+                drcost += cpdesktop
+            elif comp_type == "Laptop":
+                lrcount += 1
+                lrcost += cplaptop
+
+        total_records += 1
+
         print("{:<10} {:<10} {:<10} {:<10} {:<10} {:<10} {:<10} {:<10} {:<10}".format(comp_type, manufacturer, processor, ram, hdd_1, num_hdd, hdd_2, os, year))
 
-        if comp_type == "Desktop":
-            desktop_num = comp_type.count("Desktop")
-            print("Number of desktops: ", desktop_num)
-            if year <= ("16"):
-                print(f"Cost to replace {desktop_num} desktops: ", 2000 * desktop_num)
-        if comp_type == "Laptop":
-            laptop_num = comp_type.count("Laptop")
-            if year <= "16":
-                print("Cost to replace laptops: ", 1500 * laptop_num)
-
-#start of lab 3
-#print total amount of records processed
-
-print(f"Total number of records: {total_records}")
+    print(f"\n")
+    print(f"Total number of records: {total_records}")
+    print (f"To replace {drcount} desktops it will cost: ${drcost}")
+    print (f"To replace {lrcount} laptops it will cost: ${lrcost}")
+    print (f"\n")
