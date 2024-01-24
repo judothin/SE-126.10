@@ -21,7 +21,7 @@ year = []
 
 import csv
 
-with open ('W2\w2d2 hw\lab2b.csv') as csvfile:
+with open ('W2/w2d2 lab2/lab2b.csv') as csvfile:
     file = csv.reader(csvfile)
 
     #labels (yes i looked up how to line them up like this)
