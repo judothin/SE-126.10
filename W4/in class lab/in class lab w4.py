@@ -40,6 +40,7 @@ print (f"\n")
 numavg = 0
 total = 0
 avg = []
+let_avg = []
 
 for i in range(0, len(test1)):
 
@@ -52,4 +53,40 @@ print ("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
 
 for i in range(0, len(fname)):
     print (f"{fname[i]:12} \t {lname[i]:12} \t {avg[i]:.1f}")
-print ("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+print ("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+
+# convert numavg to letter
+# idk if these are accurate conversions, i just guessed
+for i in range(0, len(avg)):
+    if avg[i] >= 90:
+        let_avg.append('A')
+    elif avg[i] >= 80:
+        let_avg.append('B')
+    elif avg[i] >= 70:
+        let_avg.append('C')
+    elif avg[i] >= 60:
+        let_avg.append('D')
+    else:
+        let_avg.append('F')
+
+# 2d list
+all_data = []
+
+for i in range(0, len(fname)):
+    all_data.append([fname[i], lname[i], test1[i], test2[i], test3[i], avg[i], let_avg[i]])
+
+# final print    
+print (f"{'First':<12} \t {'Last':<12} \t {'Test1'} \t {'Test2'} \t {'Test3'} \t {'Average'} {'Letter'}")
+print ("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+
+for rec in all_data:
+    print(f"{rec[0]:<12} \t {rec[1]:<12} \t {rec[2]} \t {rec[3]} \t {rec[4]} \t {rec[5]:.1f} \t {rec[6]}")
+
+# total number of students
+total_students = len(all_data)
+
+# class average
+class_average = sum(student[5] for student in all_data) / total_students
+
+print(f"\nTotal number of students: {total_students}")
+print(f"Class average: {class_average:.1f}")
