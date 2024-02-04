@@ -10,7 +10,7 @@ test2 = []
 test3 = []
 
 #connect to a file and read data into 1D lists
-with open("week4/demo/files/listPractice1-1.txt") as csvfile:
+with open("W4\listPractice1-1.txt") as csvfile:
 
     file = csv.reader(csvfile)
 
