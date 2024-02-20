@@ -115,7 +115,8 @@ def best_switches():
 
 # func to display best prebuilt keyboards
 def view_all():
-    print("\nBest Prebuilt Keyboards In order:".center(100))
+    print("\n")
+    print("Best Prebuilt Keyboards In order:".center(100))
     print("\n")
     print("Name:".ljust(30) + "Price:".ljust(15) + "Layout:".ljust(15) + "Switch:".ljust(30) + "Lubed:".ljust(15) + "Wireless:".ljust(15) + "Hotswap:".ljust(30))
     print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
@@ -126,10 +127,10 @@ def view_all():
         
 
 # menu
-print("\n1. View Best Prebuilt Keyboards \n2. View Best Switches \n3. View The Best Gaming Keyboards\n4. Exit\n")
-choice = input("Enter your choice: ")
-
-while choice != '4':
+while True:
+    print("\n1. View Best Prebuilt Keyboards \n2. View Best Switches \n3. View The Best Gaming Keyboards\n4. Exit\n")
+    print(f"\n")
+    choice = input("Enter your choice: ")
     if choice == '1':
         view_all()
     elif choice == '2':
@@ -137,13 +138,9 @@ while choice != '4':
     elif choice == '3':
         gaming_keeb()
     elif choice == '4':
-        exit()
+        break # dont get mad at the break...
     else:
         print("Invalid choice. Please try again.")
-
-    print("\n1. View Best Prebuilt Keyboards \n2. View Best Switches \n3. View The Best Gaming Keyboards\n4. Exit\n")
-    choice = input("Enter your choice: ")
-
 
 
 
