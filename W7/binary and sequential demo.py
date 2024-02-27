@@ -62,6 +62,7 @@ if len(found) > 0:
 else: 
     print (f"\nWe did not find {search_name} in the file\n")
     print (f"Please Try again. ")
+    
 
 # BINARY SEARCH
 search_name = input("Enter the name you are looking for: ")
@@ -84,6 +85,10 @@ if search_name == lname[mid]:
     print (f"\nWe found {search_name} at index position {mid}")
     print (f"\tHere is there info: ")
     print (f"\t\t{fname[mid]} \t {lname[mid]} \t {id_stud[mid]} \t {class1[mid]} \t {class2[mid]} \t {class3[mid]}\n")
+
+else:
+    print (f"\nWe did not find {search_name} in the file\n")
+    print (f"Please Try again. ")
 
        
         
