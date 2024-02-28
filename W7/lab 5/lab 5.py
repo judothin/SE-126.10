@@ -51,6 +51,9 @@ while continue_program:
 
         if len(found) > 0:
             print (f"\nWe found {class_name} in the following students' info: \n")
+            print("Here is their info:\n")
+            print("{:<10} {:<10} {:<10} {:<10} {:<10} {:<10}".format("First", "Last", "ID", "Class 1", "Class 2", "Class 3"))
+            print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
 
             for i in found:
                 print("{:<10} {:<10} {:<10} {:<10} {:<10} {:<10}".format(fname[i], lname[i], id_stud[i], class1[i], class2[i], class3[i]))
@@ -70,6 +73,9 @@ while continue_program:
 
         if len(found) > 0:
             print (f"\nWe found {class2_name} in the following students' info: \n")
+            print("Here is their info:\n")
+            print("{:<10} {:<10} {:<10} {:<10} {:<10} {:<10}".format("First", "Last", "ID", "Class 1", "Class 2", "Class 3"))
+            print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
 
             for i in found:
                 print("{:<10} {:<10} {:<10} {:<10} {:<10} {:<10}".format(fname[i], lname[i], id_stud[i], class1[i], class2[i], class3[i]))
@@ -79,37 +85,55 @@ while continue_program:
 
     elif choice == "3":
 
-        class3_name = input("Enter the class 3 name you're searching for: ").lower()
+        class3_name = input("Enter the class 3 name you're searching for: ")
+
+        # sequential search
+        found = []
+
+        for i in range (len(class3)):
+            if class3_name.lower() == class3[i].lower():
+                
+                found.append(i)
+
+        if len(found) > 0:
+            print (f"\nWe found {class3_name} in the following students' info: \n")
+            print("Here is their info:\n")
+            print("{:<10} {:<10} {:<10} {:<10} {:<10} {:<10}".format("First", "Last", "ID", "Class 1", "Class 2", "Class 3"))
+            print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+
+            for i in found:
+                print("{:<10} {:<10} {:<10} {:<10} {:<10} {:<10}".format(fname[i], lname[i], id_stud[i], class1[i], class2[i], class3[i]))
+        else: 
+            print (f"\nWe did not find any student in {class3_name}\n")
+            print (f"Please Try again. ")
+        
+    elif choice == "4":
+        last_name = input("Enter the last name you're searching for: ").lower()
 
         # binary search
         min = 0
-        max = len(class3) - 1
+        max = len(lname) - 1
+        mid = (min + max) // 2
         bin_count = 0
-        found = False
 
-        while min <= max:
+        while (min < max and last_name != lname[mid].lower()):
             bin_count += 1
-            mid = (min + max) // 2
-            if class3[mid].lower() < class3_name:
-                min = mid + 1
-            elif class3[mid].lower() > class3_name:
+            if last_name < lname[mid].lower():
                 max = mid - 1
             else:
-                print (f"\nWe found {class3_name} at index position {mid}")
-                print (f"\tHere is their info: ")
-                print("{:<10} {:<10} {:<10} {:<10} {:<10} {:<10}".format(fname[mid], lname[mid], id_stud[mid], class1[mid], class2[mid], class3[mid]))
-                found = True
-                min = max + 1
+                min = mid + 1
+            mid = (min + max) // 2
 
-        if not found:
-            print(f"\n{class3_name} was not found in the list.")
-            print(f"Please try again.")
-        
-    elif choice == "4":
-        
-        last_name = input("Enter the last name your searching for: ")
+        if last_name == lname[mid].lower():
+            print (f"\nWe found {last_name} at index position {mid}\n")
+            print("Here is their info:\n")
+            print("{:<10} {:<10} {:<10} {:<10} {:<10} {:<10}".format("First", "Last", "ID", "Class 1", "Class 2", "Class 3"))
+            print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+            print(f"{fname[mid]:<10} {lname[mid]:<10} {id_stud[mid]:<10} {class1[mid]:<10} {class2[mid]:<10} {class3[mid]:<10}\n")
+        else:
+            print (f"\nWe did not find {last_name} in the file\n")
+            print (f"Please Try again.")
 
-        # sequential search
     
     elif choice == "5":
 
@@ -119,21 +143,23 @@ while continue_program:
         found = []
 
         for i in range (len(id_stud)):
-            if student_id.lower() == id_stud[i].lower():
+            if student_id.lower() == id_stud[i]:
                 found.append(i)
 
         if len(found) > 0:
-            print (f"\n We found {student_id} at index position {found[0]}")
-            print (f"\tHere is their info: ")
+            print(f"\nWe found {student_id} at index position {found[0]}\n")
+            print("Here is their info:\n")
+            print("{:<10} {:<10} {:<10} {:<10} {:<10} {:<10}".format("First", "Last", "ID", "Class 1", "Class 2", "Class 3"))
+            print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
 
-            for i in range (len(found)):
-                print (f"\t\t{fname[found[i]]} \t {lname[found[i]]} \t {id_stud[found[i]]} \t {class1[found[i]]} \t {class2[found[i]]} \t {class3[found[i]]}\n")
+            for i in range(len(found)):
+                print(f"{fname[found[i]]:<10} {lname[found[i]]:<10} {id_stud[found[i]]:<10} {class1[found[i]]:<10} {class2[found[i]]:<10} {class3[found[i]]:<10}\n")
         else: 
             print (f"\nWe did not find {student_id} in the file\n")
             print (f"Please Try again. ")
 
     elif choice == "6":
-        print("gooooooo bye.")
+        print(f"\ngooooooo bye.")
         continue_program = False
 
     else:
