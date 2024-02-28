@@ -36,7 +36,7 @@ while continue_program:
     print("6. Exit")
 
     
-    choice = input("Enter your choice (1-4): ")
+    choice = input("Enter your choice (1-6): ")
 
 
     if choice == "1":
