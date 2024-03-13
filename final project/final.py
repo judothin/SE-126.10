@@ -2,8 +2,6 @@
 # 03 / 12 / 2024
 # description: In this program you will be able to browse a small list of keyboard switches and search for them by brand, name, type, and actuation force. and each set of data will be bubble sorted into alphabetical order.
 
-import texttable
-
 import csv
 
 brand = []
@@ -45,16 +43,22 @@ while continue_program:
 
     choice = input("Enter your choice (1-6): ")
 
-    if choice == "1":
+    # imported texttable
+    import texttable as tt
 
+    if choice == "1":
         brand, name, stype, acforce = bubble(brand, name, stype, acforce)
 
-        print("\nHere is all the data:\n")
-        print("{:<18} {:<18} {:<18} {:<18}".format("Brand", "Name", "Type", "Actuation Force"))
-        print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+        # calling the texttable library function
+        table = tt.Texttable()
+        # creating the table header tags / labels
+        table.header(["Brand", "Name", "Type", "Actuation Force"])
 
         for i in range(len(brand)):
-            print("{:<18} {:<18} {:<18} {:<18}".format(brand[i], name[i], stype[i], acforce[i]))
+            table.add_row([brand[i], name[i], stype[i], acforce[i]])
+
+        # prints the completed table
+        print(table.draw())
 
     elif choice == "2":
 
@@ -79,11 +83,15 @@ while continue_program:
         if len(found) > 0:
             print(f"\nWe found {brand_name} in the following switches' info: \n")
             print("Here is their info:\n")
-            print("{:<18} {:<18} {:<18} {:<18}".format("Brand", "Name", "Type", "Actuation Force"))
-            print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+
+            table = tt.Texttable()
+            table.header(["Brand", "Name", "Type", "Actuation Force"])
 
             for i in found:
-                print("{:<18} {:<18} {:<18} {:<18}".format(brand[i], name[i], stype[i], acforce[i]))
+                table.add_row([brand[i], name[i], stype[i], acforce[i]])
+
+            print(table.draw())
+
         else:
             print(f"\nWe did not find any switches in {brand_name}\n")
             print(f"Please Try again. ")
@@ -99,11 +107,14 @@ while continue_program:
         if len(found) > 0:
             print(f"\nWe found {switch_name} in the following switches' info: \n")
             print("Here is their info:\n")
-            print("{:<18} {:<18} {:<18} {:<18}".format("Brand", "Name", "Type", "Actuation Force"))
-            print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+
+            table = tt.Texttable()
+            table.header(["Brand", "Name", "Type", "Actuation Force"])
 
             for i in found:
-                print("{:<18} {:<18} {:<18} {:<18}".format(brand[i], name[i], stype[i], acforce[i]))
+                table.add_row([brand[i], name[i], stype[i], acforce[i]])
+
+            print(table.draw())
         else:
             print(f"\nWe did not find any switches in {switch_name}\n")
             print(f"Please Try again. ")
@@ -121,11 +132,14 @@ while continue_program:
         if len(found) > 0:
             print(f"\nWe found {switch_type} in the following switches' info: \n")
             print("Here is their info:\n")
-            print("{:<18} {:<18} {:<18} {:<18}".format("Brand", "Name", "Type", "Actuation Force"))
-            print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+
+            table = tt.Texttable()
+            table.header(["Brand", "Name", "Type", "Actuation Force"])
 
             for i in found:
-                print("{:<18} {:<18} {:<18} {:<18}".format(brand[i], name[i], stype[i], acforce[i]))
+                table.add_row([brand[i], name[i], stype[i], acforce[i]])
+
+            print(table.draw())
         else:
             print(f"\nWe did not find any switches in {switch_type}\n")
             print(f"Please Try again. ")
@@ -144,11 +158,14 @@ while continue_program:
         if len(found) > 0:
             print(f"\nWe found {switch_force} in the following switches' info: \n")
             print("Here is their info:\n")
-            print("{:<18} {:<18} {:<18} {:<18}".format("Brand", "Name", "Type", "Actuation Force"))
-            print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+
+            table = tt.Texttable()
+            table.header(["Brand", "Name", "Type", "Actuation Force"])
 
             for i in found:
-                print("{:<18} {:<18} {:<18} {:<18}".format(brand[i], name[i], stype[i], acforce[i]))
+                table.add_row([brand[i], name[i], stype[i], acforce[i]])
+
+            print(table.draw())
         else:
             print(f"\nWe did not find any switches in {switch_force}\n")
             print(f"Please Try again. ")
